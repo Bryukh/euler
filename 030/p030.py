@@ -5,7 +5,7 @@ import math
 
 def self_sum(digit):
     for x in xrange(2, 1000000):
-        s = sum([math.pow(x // math.pow(10, p) % 10, digit) for p in xrange(digit+1)])
+        s = sum([math.pow(x // math.pow(10, p) % 10, digit) for p in xrange(digit + 1)])
         if s == x:
             yield s
 

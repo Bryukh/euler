@@ -12,12 +12,12 @@ What is the total of all the name scores in the file?"""
 def total_scores(name_list):
     """871198282"""
     name_list.sort()
-    score_list = [sum((ord(ch)-64 for ch in name)) for name in name_list]
-    return sum((i*score_list[i-1] for i in xrange(1,len(score_list)+1)))
+    score_list = [sum((ord(ch) - 64 for ch in name)) for name in name_list]
+    return sum((i * score_list[i - 1] for i in xrange(1, len(score_list) + 1)))
 
 if __name__ == "__main__":
     try:
-        fname = open("names.txt","r")
+        fname = open("names.txt", "r")
     except IOError:
         print "Couldn't open \'names.txt\'"
         exit()

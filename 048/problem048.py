@@ -6,7 +6,7 @@ import math
 
 def last_pow_numb(base, pow, last):
     """function for last number in power"""
-    return reduce(lambda x, y: (x * y) % last, [base]*(pow-1), base)
+    return reduce(lambda x, y: (x * y) % last, [base] * (pow - 1), base)
 
 if __name__ == "__main__":
     l = math.pow(10, 10)

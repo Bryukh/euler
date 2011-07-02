@@ -25,23 +25,23 @@ def spiral_array(side):
     try:
         while 1:
             #move right
-            for j in range(1, step+1):
+            for j in range(1, step + 1):
                 y += 1
                 ar[x][y] = i
                 i += 1
             #move down
-            for j in range(1, step+1):
+            for j in range(1, step + 1):
                 x += 1
                 ar[x][y] = i
                 i += 1
             step += 1
             #move left
-            for j in range(1, step+1):
+            for j in range(1, step + 1):
                 y -= 1
                 ar[x][y] = i
                 i += 1
             #move up
-            for j in range(1, step+1):
+            for j in range(1, step + 1):
                 x -= 1
                 ar[x][y] = i
                 i += 1
