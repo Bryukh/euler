@@ -19,11 +19,10 @@ __author__ = 'bruykh'
 res = []
 for var in permutations(range(1, 10)):
     for i in xrange(1, 5):
-        for j in xrange(i+1, 6):
-            a = lst_to_int(var[:i])
-            b = lst_to_int(var[i:j])
-            c = lst_to_int(var[j:])
-            if a*b == c:
-                res.append(c)
-                print a,b,c
+        a = lst_to_int(var[:i])
+        b = lst_to_int(var[i:5])
+        c = lst_to_int(var[5:])
+        if a*b == c:
+            res.append(c)
+            print a,b,c
 print sum(set(res))
