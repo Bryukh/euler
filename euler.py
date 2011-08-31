@@ -6,7 +6,7 @@ from optparse import OptionParser
 def find_solution(task_number, var=0):
     """
     Check existence for variant of solution and return module and function name
-    """"
+    """
     task_name = "p" + str(task_number)
     try:
         task = __import__("solutions." + task_name, fromlist=[task_name])
