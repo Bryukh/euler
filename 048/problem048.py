@@ -12,3 +12,4 @@ if __name__ == "__main__":
     l = math.pow(10, 10)
     s = sum([last_pow_numb(x, x, l) for x in xrange(1, 1001)])
     print s % l
+    
