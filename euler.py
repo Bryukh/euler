@@ -4,6 +4,9 @@ from timeit import Timer
 from optparse import OptionParser
 
 def find_solution(task_number, var=0):
+    """
+    Check existence for variant of solution and return module and function name
+    """"
     task_name = "p" + str(task_number)
     try:
         task = __import__("solutions." + task_name, fromlist=[task_name])
@@ -18,20 +21,26 @@ def find_solution(task_number, var=0):
     return task_name, solution_name
 
 def run_solution(task_name, solution_name):
+    """
+    Run solution and return answer
+    """
     task = __import__("solutions." + task_name, fromlist=[task_name])
     solution = getattr(task, solution_name)
     return  solution()
 
 def run_timing(task_name, solution_name, quantity=1):
-    #from problem001 import sum3and5, sum3and5_v2
-    #print solution_name + "()"
-    #print "from %s import %s" % (task_name, solution_name)
+    """
+    Run timing for solution quantity times
+    """
     timer = Timer(solution_name + "()",
                "from solutions.%s import %s" % (task_name, solution_name))
     time = timer.timeit(quantity)
     return time
 
 def run_show(task_number, var=None):
+    """
+    Show exist variants and docstring for it
+    """
     pass
 
 if __name__ == '__main__':
