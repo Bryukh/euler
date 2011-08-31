@@ -4,11 +4,18 @@
 
 from datetime import date
 
-if __name__ == '__main__':
-    #Answer: 171
+CONST = 1901, 2001
+
+def solution(begin=CONST[0], end=CONST[1]):
+    "Bryukh's solution"
     count = 0
-    for y in xrange(1901, 2001):
+    for y in xrange(begin, end):
         for m in xrange(1, 13):
             if date(y, m, 1).weekday() == 6:
                 count += 1
-    print count
+    return count
+
+
+if __name__ == '__main__':
+    #Answer: 171
+    print solution()

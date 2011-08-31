@@ -28,5 +28,15 @@ def fibonacci(max_value):
         yield b
         a, b = b, a+b
 
+def divisors(numb):
+    numb = int(numb)
+    return [x for x in xrange(2, numb//2+1) if not numb%x]
+
+def isabundant(numb):
+    "Checking whether a number is abundant"
+    if numb <= 0:
+        return False
+    return numb < sum(divisors(numb))
+
 if __name__ == '__main__':
     pass

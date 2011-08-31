@@ -62,7 +62,7 @@ if __name__ == '__main__':
     names = find_solution(task_number[0], options.var)
     if names:
         print "Variant ", "default" if not options.var else options.var
-        print "Solution is ", run_solution(*names)
+        print "Answer is", run_solution(*names)
         if options.quantity:
             print "Timer for %d time is" % options.quantity,\
                     run_timing(*names, quantity=options.quantity)
