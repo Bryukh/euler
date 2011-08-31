@@ -25,4 +25,4 @@ def solution2(edge=CONST):
 
 if __name__ == "__main__":
     print solution()
-    print solution()
+    print solution2()
