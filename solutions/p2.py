@@ -10,13 +10,9 @@ find the sum of the even-valued terms."""
 
 __author__ = 'bruykh'
 
-CONST = 4000000
+from eulerfunc import fibonacci
 
-def fibonacci(max_value):
-    a, b = 1, 2
-    while b < max_value:
-        yield b
-        a, b = b, a+b
+CONST = 4000000
 
 def solution():
     return sum([x for x in fibonacci(CONST) if not x%2])

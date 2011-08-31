@@ -22,5 +22,11 @@ def isprime(numb):
             return False
     return True
 
+def fibonacci(max_value):
+    a, b = 1, 2
+    while b < max_value:
+        yield b
+        a, b = b, a+b
+
 if __name__ == '__main__':
     pass
