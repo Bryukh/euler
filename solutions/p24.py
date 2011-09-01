@@ -9,7 +9,12 @@ we call it lexicographic order. The lexicographic permutations of 0, 1 and 2 are
 What is the millionth lexicographic
 permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?"""
 
+CONST=1000000
+
 def combination(variants):
+    """
+    It's substitute for itertools.permutations for solution
+    """
     if variants:
         for i in variants:
             rvariants = variants[:]
@@ -19,9 +24,11 @@ def combination(variants):
     else:
         yield []
 
-count = 1
-for x in combination(range(10)):
-    count += 1
-    if count > 1000000:
-        print ''.join([str(i) for i in x])
-        exit()
+def solution(maxcount=CONST):
+    "Bryukh's solution"
+    count = 1
+    for x in combination(range(10)):
+        count += 1
+        if count > maxcount:
+            return ''.join([str(i) for i in x])
+
