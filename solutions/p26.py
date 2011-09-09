@@ -18,10 +18,14 @@ It can be seen that 1/7 has a 6-digit recurring cycle.
 Find the value of d < 1000 for which 1/d contains the longest
 recurring cycle in its decimal fraction part.
 """
-if __name__=='__main__':
+
+CONST = 1000
+
+def solution(maxvalue=CONST):
+    "Bryukh's solution"
     maxrep = 0
     best = 1
-    for d in xrange(2, 1000):
+    for d in xrange(2, maxvalue):
         den = 1
         prev = []
         while 1:
@@ -38,4 +42,4 @@ if __name__=='__main__':
                 break
             prev.append(mod)
             den = mod
-    print maxrep, best
+    return best

@@ -1,17 +1,20 @@
+#!/usr/bin/env python
 #-*- encoding: utf8 -*-
-
+"""
+#TODO: need docstring
+"""
 from timeit import Timer
 from optparse import OptionParser
 
-def find_solution(task_number, var=0):
+def find_solution(tnumber, var=0):
     """
     Check existence for variant of solution and return module and function name
     """
-    task_name = "p" + str(task_number)
+    task_name = "p" + str(tnumber)
     try:
         task = __import__("solutions." + task_name, fromlist=[task_name])
     except ImportError:
-        print "Cann't find solution file for problem %d" % int(task_number)
+        print "Can't find solution file for problem %d" % int(tnumber)
         return None
     #i can import solutions, but it import all tasks
     solution_name = "solution" + (str(var) if var else '')
@@ -37,13 +40,17 @@ def run_timing(task_name, solution_name, quantity=1):
     time = timer.timeit(quantity)
     return time
 
-def run_show(task_number, var=None):
+def run_show(tnumber, var=None):
     """
     Show exist variants and docstring for it
     """
     pass
 
-if __name__ == '__main__':
+
+def main():
+    """
+    Main function
+    """
     parser = OptionParser()
     parser.add_option("-t", "--timing", action="store_true",
                       dest="timing",
@@ -59,16 +66,18 @@ if __name__ == '__main__':
                       help="Select variant of solution")
     options, task_number = parser.parse_args()
     #print task_number
-    print options
+    #print options
     if not task_number:
         print "Please enter task number"
         exit()
-    names = find_solution(task_number[0], options.var)
-    if names:
+    task_name, solution_name = find_solution(task_number[0], options.var)
+    if task_name:
         print "Variant ", "default" if not options.var else options.var
-        print "Answer is", run_solution(*names)
+        print "Answer is", run_solution(task_name, solution_name)
         if options.timing:
-            print "Timer for %d time is" % options.quantity,\
-                    run_timing(*names, quantity=options.quantity)
+            print "Timer for %d time is" % options.quantity, \
+                run_timing(task_name, solution_name, quantity=options.quantity)
 
+if __name__ == '__main__':
+    main()
 

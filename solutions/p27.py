@@ -25,23 +25,20 @@ Find the product of the coefficients, a and b, for the quadratic
 expression that produces the maximum number of primes for consecutive
 values of n, starting with n = 0.
 """
-def isprime(numb):
-    if numb <= 0:
-        return False
-    for i in xrange(2, int(pow(numb, 0.5))+1):
-        if not numb % i:
-            return False
-    return True
 
-best = (1, 1, 1)
-for a in xrange(-999, 1000):
-    for b in xrange(-999, 1000):
-        unt = 0
-        i = 0
-        while isprime(i**2 + a*i + b):
-            i += 1
-        if i-1 > best[0]:
-            best = (i-1, a, b)
-            print best
+from eulerfunc import isprime
+
+def solution():
+    "Bryukh's solution"
+    best = (1, 1, 1)
+    for a in xrange(-999, 1000):
+        for b in xrange(-999, 1000):
+            unt = 0
+            i = 0
+            while isprime(i**2 + a*i + b):
+                i += 1
+            if i-1 > best[0]:
+                best = (i-1, a, b)
+                return best[1] * best[2]
 
     
