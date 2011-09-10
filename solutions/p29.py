@@ -13,6 +13,9 @@ we get the following sequence of 15 distinct terms:
 How many distinct terms are in the sequence generated
 by ab for 2  a  100 and 2  b  100?"""
 
-d = list(set([a ** b for a in xrange(2, 101) for b in xrange(2, 101)]))
-#d.sort()
-print len(d)
+CONST=100
+
+def solution(size=CONST):
+    "Bryukh's solution"
+    sequence = list(set([a ** b for a in xrange(2, 101) for b in xrange(2, 101)]))
+    return len(sequence)

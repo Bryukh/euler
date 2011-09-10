@@ -58,7 +58,6 @@ def main():
     parser.add_option("-n", action="store", type="int",
                       dest="quantity", default=1,
                       help="How many times run solution")
-
     parser.add_option("-s", "--show-variants", action="store_true",
                       help="Show variants of solutions")
     parser.add_option("-v", "--variant", type="int", dest="var",
