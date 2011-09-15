@@ -17,13 +17,13 @@ SUMM = 200
 COINS = [1, 2, 5, 10, 20, 50, 100, 200][::-1]
 
 #TODO: change task for checkio
-def coinsvar(coins, beg, need):
+def solution(coins=COINS, beg=0, need=SUMM):
     if len(coins) == 1:
         return 1
     var = 0
     for x in xrange(((need-beg)/coins[0])+1):
-        var += coinsvar(coins[1:], beg + x*coins[0], need)
+        var += solution(coins[1:], beg + x*coins[0], need)
     return var
 
 if __name__=="__main__":
-    print coinsvar(COINS, 0, SUMM)
+    print solution()

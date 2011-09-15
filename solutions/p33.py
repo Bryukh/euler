@@ -11,34 +11,17 @@ If the product of these four fractions is given in its lowest common terms,
 find the value of the denominator.
 """
 
+from eulerfunc import isCuriousFraction
 from fractions import Fraction
 
-def isCuriousFraction(numenator, denominator):
-    """
-    It is check fractions for task
-    """
-    snum = str(numenator)
-    sden = str(denominator)
-    for i in xrange(len(snum)):
-        for j in xrange(len(sden)):
-            if snum[i] != sden[j] or not int(snum[i]) or not int(sden[j]):
-                continue
-            newnum = int(snum[:i]+snum[i+1:])
-            newden = int(sden[:j]+sden[j+1:])
-            if not newden:
-                continue
-            if Fraction(numenator, denominator) == Fraction(newnum, newden):
-                return True
-    return False
-
-if __name__ == '__main__':
+def solution():
+    """Bryukh's solution"""
     res = 1
     for x in xrange(10, 100):
         for y in xrange(x+1, 100):
             if isCuriousFraction(x, y):
-                print "{0}/{1}".format(x,y)
                 res *= Fraction(x, y)
-    print "Answer - {0}".format(res)
+    return res
 
 
 

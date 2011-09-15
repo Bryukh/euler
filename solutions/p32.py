@@ -15,14 +15,17 @@ from itertools import permutations
 def lst_to_int(lst):
     return int(''.join([str(x) for x in lst]))
 
-__author__ = 'bruykh'
-res = []
-for var in permutations(range(1, 10)):
-    for i in xrange(1, 5):
-        a = lst_to_int(var[:i])
-        b = lst_to_int(var[i:5])
-        c = lst_to_int(var[5:])
-        if a*b == c:
-            res.append(c)
-            print a,b,c
-print sum(set(res))
+def solution():
+    res = []
+    for var in permutations(range(1, 10)):
+        for i in xrange(1, 5):
+            a = lst_to_int(var[:i])
+            b = lst_to_int(var[i:5])
+            c = lst_to_int(var[5:])
+            if a*b == c:
+                res.append(c)
+                #print a,b,c
+    return sum(set(res))
+
+if __name__ == "__main__":
+    print solution()

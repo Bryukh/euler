@@ -69,13 +69,13 @@ def main():
     if not task_number:
         print "Please enter task number"
         exit()
-    task_name, solution_name = find_solution(task_number[0], options.var)
-    if task_name:
+    names = find_solution(task_number[0], options.var)
+    if names:
         print "Variant ", "default" if not options.var else options.var
-        print "Answer is", run_solution(task_name, solution_name)
+        print "Answer is", run_solution(names[0], names[1])
         if options.timing:
             print "Timer for %d time is" % options.quantity, \
-                run_timing(task_name, solution_name, quantity=options.quantity)
+                run_timing(names[0], names[1], quantity=options.quantity)
 
 if __name__ == '__main__':
     main()
