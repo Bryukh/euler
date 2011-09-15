@@ -75,5 +75,21 @@ def isbinpalindrom(numb):
     b = bin(int(numb))[2:]
     return b == b[::-1]
 
+def last_pow_numb(base, pow, last):
+    """function for last number in power"""
+    return reduce(lambda x, y: (x * y) % last, [base] * (pow - 1), base)
+
+def irrational():
+    """
+    An irrational decimal fraction is created by concatenating
+    the positive integers:
+    0.123456789101112131415161718192021...
+    """
+    count = 1
+    while True:
+        for c in str(count):
+            yield int(c)
+        count += 1
+
 if __name__ == '__main__':
     pass

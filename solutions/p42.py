@@ -13,14 +13,18 @@ a 16K text file containing nearly two-thousand common English words,
 how many are triangle words?
 """
 
-triagle_numbs = [(n*(n+1))/2 for n in xrange(1, 100)]
-words_file = open("words.txt", "r")
-words_str = words_file.read()
-words = words_str.replace('\"', '').split(',')
-count = 0
-for w in words:
-    if sum([ord(c)-64 for c in w]) in triagle_numbs:
-        print w
-        count +=1
-words_file.close()
-print "Solution", count
+def solution():
+    """
+    bryukh's solution
+    """
+    triagle_numbs = [(n*(n+1))/2 for n in xrange(1, 100)]
+    words_file = open("eulerfiles/words42.txt", "r")
+    words_str = words_file.read()
+    words = words_str.replace('\"', '').split(',')
+    count = 0
+    for w in words:
+        if sum([ord(c)-64 for c in w]) in triagle_numbs:
+            #print w
+            count +=1
+    words_file.close()
+    return count
