@@ -40,12 +40,24 @@ def run_timing(task_name, solution_name, quantity=1):
     time = timer.timeit(quantity)
     return time
 
-def run_show(tnumber, var=None):
+def run_show_vars(tnumber, var=None):
     """
     Show exist variants and docstring for it
     """
     pass
 
+def run_show_all():
+    """
+    Show existing solutions
+    """
+    pass
+
+def run_show_task(task_name):
+    """
+    Show task description
+    """
+    task = __import__("solutions." + task_name, fromlist=[task_name])
+    return task.__doc__
 
 def main():
     """
@@ -63,6 +75,12 @@ def main():
     parser.add_option("-v", "--variant", type="int", dest="var",
                       default=0,
                       help="Select variant of solution")
+    parser.add_option("-a", "--show-solutions", dest="show_all",
+                      action="store_true",
+                      help="Show existing solutions")
+    parser.add_option("-d", "--show-description", dest="description",
+                      action="store_true",
+                      help="Show task description")
     options, task_number = parser.parse_args()
     #print task_number
     #print options
@@ -70,6 +88,8 @@ def main():
         print "Please enter task number"
         exit()
     names = find_solution(task_number[0], options.var)
+    if options.description:
+        print run_show_task(names[0])
     if names:
         print "Variant ", "default" if not options.var else options.var
         print "Answer is", run_solution(names[0], names[1])
