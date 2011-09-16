@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 #-*- encoding: utf8 -*-
 """
-#TODO: need docstring
+
 """
+#TODO: need docstring
+import os
+import re
+
 from timeit import Timer
 from optparse import OptionParser
 
@@ -44,13 +48,17 @@ def run_show_vars(tnumber, var=None):
     """
     Show exist variants and docstring for it
     """
+    #TODO: Fill it
     pass
 
 def run_show_all():
     """
     Show existing solutions
     """
-    pass
+    files = os.listdir("solutions")
+    pattern = re.compile(r"p\d*\.py$")
+    tasks = [int(f[1:-3]) for f in files if re.match(pattern, f)]
+    return ','.join([str(t) for t in sorted(tasks)])
 
 def run_show_task(task_name):
     """
@@ -84,12 +92,16 @@ def main():
     options, task_number = parser.parse_args()
     #print task_number
     #print options
+    if options.show_all:
+        print run_show_all()
+        return None
     if not task_number:
         print "Please enter task number"
         exit()
     names = find_solution(task_number[0], options.var)
     if options.description:
         print run_show_task(names[0])
+
     if names:
         print "Variant ", "default" if not options.var else options.var
         print "Answer is", run_solution(names[0], names[1])
