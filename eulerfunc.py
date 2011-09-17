@@ -1,7 +1,7 @@
 #-*- encoding: utf8 -*-
 
 from fractions import Fraction
-
+import math
 
 def factorial(numb):
     """
@@ -90,6 +90,27 @@ def irrational():
         for c in str(count):
             yield int(c)
         count += 1
+
+def triangle(n):
+    """
+    Find n-th tiangle number
+    """
+    return (n * (n + 1)) / 2
+
+def ispentagonal(x):
+    """
+    Tests for pentagonal numbers
+    """
+    n = (math.sqrt(24*x+1) + 1) / 6
+    return int(n) == n
+
+def ishexagonal(x):
+    """
+    Tests for hexagonal numbers
+    """
+    n = (math.sqrt(8*x+1) + 1) / 4
+    return int(n) == n
+
 
 if __name__ == '__main__':
     pass
