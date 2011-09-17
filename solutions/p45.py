@@ -16,7 +16,7 @@ def solution():
     """
     Bryukh's solution
     """
-    for i in xrange(286, 1000000000000):
+    for i in xrange(286, 100000):
         tr = triangle(i)
         if ispentagonal(tr) and ishexagonal(tr):
             return tr
