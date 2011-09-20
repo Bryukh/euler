@@ -13,29 +13,28 @@ Which prime, below one-million, can be written as the sum of the most
 consecutive primes?
 """
 
-from eulerfunc import eratosthenes, isprime
+from eulerfunc import eratosthenes
 
-def solution():
+CONST=1000000
+
+def solution(max_value=CONST):
     """
     Bryukh's solution
     """
-    prime_lst = eratosthenes(1000000)
+    prime_lst = eratosthenes(max_value)
     res = 0
-    for i in xrange(len(prime_lst)):
-        #print i
-        temp = sum(prime_lst[:i])
-        if  isprime(temp):
-            if temp > 1000000:
-                max_shift = 1000000 - res
-                j = 0
-                while prime_lst[j] < max_shift:
-                    shift_temp = sum(prime_lst[j:i])
-                    if isprime(shift_temp) and res < shift_temp < 1000000:
-                        res = sum(prime_lst[j:i])
-                    j += 1
-                return res
-            res = temp
-    return None
+    len_res = 0
+    for start in xrange(10):
+        temp = 0
+        for i in prime_lst[start:]:
+            temp += i
+            if temp > max_value:
+                break
+            if temp in prime_lst:
+                if i - start > len_res:
+                    len_res = i - start
+                    res = temp
+    return res
 
 
 if __name__ == '__main__':
