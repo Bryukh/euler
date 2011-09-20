@@ -35,6 +35,9 @@ def ispandigital(numb, length):
             set([str(x) for x in xrange(1, length+1)]) == set(str(numb)))
 
 def eratosthenes(n):
+    """
+    Give list of primes numbers less than n
+    """
     N=range(n+1)
     z=[0]*(n/2)
     for i in range(2, int(n**.5)+1):
