@@ -18,6 +18,12 @@ COINS = [1, 2, 5, 10, 20, 50, 100, 200][::-1]
 
 #TODO: change task for checkio
 def solution(coins=COINS, beg=0, need=SUMM):
+    """
+    Bryukh's solution
+    
+    >>> solution()
+    73682
+    """
     if len(coins) == 1:
         return 1
     var = 0
@@ -26,4 +32,5 @@ def solution(coins=COINS, beg=0, need=SUMM):
     return var
 
 if __name__=="__main__":
-    print solution()
+    import doctest
+    doctest.testmod()
