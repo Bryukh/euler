@@ -56,7 +56,7 @@ class Solution():
         time = timer.timeit(quantity)
         return time
 
-    def run_show_vars(tnumber, var=None):
+    def run_show_vars(self):
         """
         Show exist variants and docstring for it
         """
@@ -120,4 +120,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
