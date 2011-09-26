@@ -10,62 +10,74 @@ import re
 from timeit import Timer
 from optparse import OptionParser
 
-def find_solution(tnumber, var=0):
-    """
-    Check existence for variant of solution and return module and function name
-    """
-    task_name = "p" + str(tnumber)
-    try:
-        task = __import__("solutions." + task_name, fromlist=[task_name])
-    except ImportError:
-        print "Can't find solution file for problem %d" % int(tnumber)
-        return None
-    #i can import solutions, but it import all tasks
-    solution_name = "solution" + (str(var) if var else '')
-    if solution_name not in dir(task):
-        print "Cann't find variant %d" % int(var)
-        return None
-    return task_name, solution_name
+class SolutionError():
+    def __init__(self, text):
+        self.text = text
+    def __str__(self):
+        return repr(self.text)
 
-def run_solution(task_name, solution_name):
-    """
-    Run solution and return answer
-    """
-    task = __import__("solutions." + task_name, fromlist=[task_name])
-    solution = getattr(task, solution_name)
-    return  solution()
 
-def run_timing(task_name, solution_name, quantity=1):
+class Solution():
     """
-    Run timing for solution quantity times
+    Create solution object
     """
-    timer = Timer(solution_name + "()",
-               "from solutions.%s import %s" % (task_name, solution_name))
-    time = timer.timeit(quantity)
-    return time
+    def __init__(self, task_number, variant):
+        """
+        Check existence of solution
+        """
+        self._task_number = task_number
+        self._variant = variant
+        task_name = "p{0}".format(str(self._task_number))
+        try:
+            self._task = __import__("solutions." + task_name, fromlist=[task_name])
+        except ImportError:
+            raise SolutionError("Can't find solution file " +
+                                    "for problem {0}".format(self._task_number))
+        #i can import solutions, but it import all tasks
+        self._solution_name = ("solution" +
+                               (str(self._variant) if self._variant else ''))
+        if self._solution_name not in dir(self._task):
+            raise SolutionError("Cann't find variant {0}".format(self._variant))
+        self._solution_func = getattr(self._task, self._solution_name)
 
-def run_show_vars(tnumber, var=None):
-    """
-    Show exist variants and docstring for it
-    """
-    #TODO: Fill it
-    pass
+    def run_solution(self):
+        """
+        Run solution and return answer
+        """
+        return self._solution_func()
 
-def run_show_all():
-    """
-    Show existing solutions
-    """
-    files = os.listdir("solutions")
-    pattern = re.compile(r"p\d*\.py$")
-    tasks = [int(f[1:-3]) for f in files if re.match(pattern, f)]
-    return ','.join([str(t) for t in sorted(tasks)])
+    def run_timing(self, quantity=1):
+        """
+        Run timing for solution quantity times
+        """
+        timer = Timer(self._solution_name + "()",
+                   "from solutions.p{0} import {1}".format(
+                       self._task_number, self._solution_name))
+        time = timer.timeit(quantity)
+        return time
 
-def run_show_task(task_name):
-    """
-    Show task description
-    """
-    task = __import__("solutions." + task_name, fromlist=[task_name])
-    return task.__doc__
+    def run_show_vars(tnumber, var=None):
+        """
+        Show exist variants and docstring for it
+        """
+        #TODO: Fill it
+        pass
+    
+    @staticmethod
+    def run_show_all():
+        """
+        Show existing solutions
+        """
+        files = os.listdir("solutions")
+        pattern = re.compile(r"p\d*\.py$")
+        tasks = [int(f[1:-3]) for f in files if re.match(pattern, f)]
+        return ','.join([str(t) for t in sorted(tasks)])
+
+    def run_show_task(self):
+        """
+        Show task description
+        """
+        return self._task.__doc__
 
 def main():
     """
@@ -90,24 +102,21 @@ def main():
                       action="store_true",
                       help="Show task description")
     options, task_number = parser.parse_args()
-    #print task_number
-    #print options
+    
     if options.show_all:
-        print run_show_all()
+        print Solution.run_show_all()
         return None
     if not task_number:
         print "Please enter task number"
         exit()
-    names = find_solution(task_number[0], options.var)
+    solution = Solution(task_number[0], options.var)
     if options.description:
-        print run_show_task(names[0])
-
-    if names:
-        print "Variant ", "default" if not options.var else options.var
-        print "Answer is", run_solution(names[0], names[1])
-        if options.timing:
-            print "Timer for %d time is" % options.quantity, \
-                run_timing(names[0], names[1], quantity=options.quantity)
+        print solution.run_show_task()
+    print "Variant ", "default" if not options.var else options.var
+    print "Answer is", solution.run_solution()
+    if options.timing:
+        print "Timer for %d time is" % options.quantity, \
+            solution.run_timing(quantity=options.quantity)
 
 if __name__ == '__main__':
     main()
