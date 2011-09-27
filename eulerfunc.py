@@ -114,6 +114,31 @@ def ishexagonal(x):
     n = (math.sqrt(8*x+1) + 1) / 4
     return int(n) == n
 
+def primedivisors(x):
+    """
+    return dictionary of prime divisors and it's power
+
+    >>> primedivisors(17)
+    {17: 1}
+    >>> primedivisors(99)
+    {11: 1, 3: 2}
+    >>> primedivisors(100)
+    {2: 2, 5: 2}
+    """
+    res = {}
+    prime_list = list(eratosthenes(x))
+    while prime_list:
+        pr = prime_list[0]
+        #print pr, x
+        if x % pr:
+            prime_list.remove(pr)
+        else:
+            res[pr] = res[pr]+1 if pr in res.keys() else 1
+            if x == pr:
+                break
+            x = x / pr
+    return res
 
 if __name__ == '__main__':
-    pass
+    import doctest
+    doctest.testmod(verbose=True)
