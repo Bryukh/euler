@@ -82,3 +82,38 @@ def solution1(value=CONST):
 #                break
 #            x = x / pr
 #    return res
+
+def solution2(value=CONST):
+    """
+    Bryukh's solution
+    four time calculation in one
+    >>> solution(2)
+    14
+    >>> solution(3)
+    644
+    """
+    def count_div(numb, lst):
+        res = 0
+        for pr in lst:
+            if not numb % pr:
+                res += 1
+            if pr > numb/2:
+                if not res:
+                    res = 1
+                break
+        return res
+
+    pr_list = eratosthenes(100000)
+    x = 10
+    x_divisors = [0] * value
+    for i in range(value):
+        x_divisors[i] = count_div(x+i, pr_list)
+    while True:
+        if all([xd==value for xd in x_divisors]):
+            break
+        x += 1
+        x_divisors = x_divisors[1:] + [count_div(x+value-1, pr_list)]
+    return x
+
+if __name__ == "__main__":
+    solution2()
