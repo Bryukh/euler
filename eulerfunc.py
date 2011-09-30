@@ -7,7 +7,7 @@ def factorial(numb):
     """
     Simple factorial
     """
-    return reduce(lambda x,y: x*y, range(1,numb+1)) if numb else 1
+    return reduce(lambda x, y: x*y, range(1, numb+1)) if numb else 1
 
 def isCuriousFraction(numenator, denominator):
     """
@@ -31,18 +31,21 @@ def isCuriousFraction(numenator, denominator):
 
 
 def ispandigital(numb, length):
+    """
+    TODO: add description
+    """
     return (len(str(numb)) == length and
             set([str(x) for x in xrange(1, length+1)]) == set(str(numb)))
 
-def eratosthenes(n):
+def eratosthenes(numb):
     """
-    Give list of primes numbers less than n
+    Give list of primes numbers less than numb
     """
-    N=range(n+1)
-    z=[0]*(n/2)
-    for i in range(2, int(n**.5)+1):
+    N = range(numb+1)
+    z = [0]*(numb/2)
+    for i in range(2, int(numb**.5)+1):
         if N[i]:
-            N[i*i::i] = z[:(n/i)-i+1]
+            N[i*i::i] = z[:(numb/i)-i+1]
     return filter(None, N[2:])
 
 def isprime(numb):
@@ -78,9 +81,9 @@ def isbinpalindrom(numb):
     b = bin(int(numb))[2:]
     return b == b[::-1]
 
-def last_pow_numb(base, pow, last):
+def last_pow_numb(base, power, last):
     """function for last number in power"""
-    return reduce(lambda x, y: (x * y) % last, [base] * (pow - 1), base)
+    return reduce(lambda x, y: (x * y) % last, [base] * (power - 1), base)
 
 def irrational():
     """

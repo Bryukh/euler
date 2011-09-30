@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 #-*- encoding: utf8 -*-
+#pylint: disable=W0511
 """
 
 """
@@ -10,9 +11,13 @@ import re
 from timeit import Timer
 from optparse import OptionParser
 
-class SolutionError():
+class SolutionError(Exception):
+    """
+    Solution exception
+    """
     def __init__(self, text):
         self.text = text
+
     def __str__(self):
         return repr(self.text)
 
@@ -29,7 +34,8 @@ class Solution():
         self._variant = variant
         task_name = "p{0}".format(str(self._task_number))
         try:
-            self._task = __import__("solutions." + task_name, fromlist=[task_name])
+            self._task = __import__("solutions." + task_name,
+                                     fromlist=[task_name])
         except ImportError:
             raise SolutionError("Can't find solution file " +
                                     "for problem {0}".format(self._task_number))
@@ -120,3 +126,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    

@@ -4,6 +4,10 @@ euler.wpr
 
 .pydevproject
 
+.ropeproject
+
+*sublime-*
+
 .idea/workspace.xml
 
 .project
