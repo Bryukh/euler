@@ -9,7 +9,7 @@ def factorial(numb):
     """
     return reduce(lambda x, y: x*y, range(1, numb+1)) if numb else 1
 
-def isCuriousFraction(numenator, denominator):
+def is_curious_fraction(numenator, denominator):
     """
     The fraction 49/98 is a curious fraction, as an inexperienced mathematician
     in attempting to simplify it may incorrectly believe that 49/98 = 4/8,
@@ -67,6 +67,32 @@ def fibonacci(max_value):
 def divisors(numb):
     numb = int(numb)
     return [x for x in xrange(2, numb//2+1) if not numb%x]
+
+def uniq_divisors(numb):
+    """
+    return list of divisors
+    if numb is prime return list contain one number
+    """
+    n = int(numb)
+    if n == 1: return [1]
+    i = 2
+    max_i = n**0.5
+    res = []
+
+    while i <= max_i and n != 1:
+        if not n % i:
+            res.append(i)
+            n /= i
+            continue
+        i += 1
+    if n != 1: res.append(n)
+    return sorted(list(set(res)))
+
+def euler_phi(numb):
+    """
+    Euler's totient function
+    """
+    return reduce(lambda x, y: x - x/y, uniq_divisors(numb), numb)
 
 def isabundant(numb):
     """Checking whether a number is abundant"""

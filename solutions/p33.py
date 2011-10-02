@@ -11,7 +11,7 @@ If the product of these four fractions is given in its lowest common terms,
 find the value of the denominator.
 """
 
-from eulerfunc import isCuriousFraction
+from eulerfunc import is_curious_fraction
 from fractions import Fraction
 
 def solution():
@@ -19,7 +19,7 @@ def solution():
     res = 1
     for x in xrange(10, 100):
         for y in xrange(x+1, 100):
-            if isCuriousFraction(x, y):
+            if is_curious_fraction(x, y):
                 res *= Fraction(x, y)
     return res
 
