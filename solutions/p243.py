@@ -25,7 +25,7 @@ def solution(value=CONST):
     Bryukh's solution
     Very very very long solution
     >>> solution()
-    
+    892371480
     """
     Rd_edge = Fraction(value[0], value[1])
     den = 1
@@ -36,6 +36,20 @@ def solution(value=CONST):
         Rd = Fraction(res, den-1)
         print den, Rd
     return den
+
+def solution1(value=CONST):
+    """
+    Bryukh's solution
+    Nice solution
+    >>> solution()
+    892371480
+    """
+    Rd_edge = float(value[0]) / value[1]
+    den = 2*3*5*7*11*13*17*19*23    #if produce it at 29 we go to low
+    resilence = lambda x: euler_phi(x)/float((x-1))
+    for mult in xrange(1, 30):
+        if resilence(den*mult) < Rd_edge:
+            return den*mult
 
 if __name__ == "__main__":
     from doctest import testmod
