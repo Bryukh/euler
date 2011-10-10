@@ -11,6 +11,7 @@ import re
 from timeit import Timer
 from optparse import OptionParser
 
+
 class SolutionError(Exception):
     """
     Solution exception
@@ -68,7 +69,7 @@ class Solution():
         """
         #TODO: Fill it
         pass
-    
+
     @staticmethod
     def run_show_all():
         """
@@ -84,6 +85,7 @@ class Solution():
         Show task description
         """
         return self._task.__doc__
+
 
 def main():
     """
@@ -108,7 +110,7 @@ def main():
                       action="store_true",
                       help="Show task description")
     options, task_number = parser.parse_args()
-    
+
     if options.show_all:
         print Solution.run_show_all()
         return None
@@ -126,4 +128,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    

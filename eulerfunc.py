@@ -3,11 +3,13 @@
 from fractions import Fraction
 import math
 
+
 def factorial(numb):
     """
     Simple factorial
     """
-    return reduce(lambda x, y: x*y, range(1, numb+1)) if numb else 1
+    return reduce(lambda x, y: x * y, range(1, numb + 1)) if numb else 1
+
 
 def is_curious_fraction(numenator, denominator):
     """
@@ -21,8 +23,8 @@ def is_curious_fraction(numenator, denominator):
         for j in xrange(len(sden)):
             if snum[i] != sden[j] or not int(snum[i]) or not int(sden[j]):
                 continue
-            newnum = int(snum[:i]+snum[i+1:])
-            newden = int(sden[:j]+sden[j+1:])
+            newnum = int(snum[:i] + snum[i + 1:])
+            newden = int(sden[:j] + sden[j + 1:])
             if not newden:
                 continue
             if Fraction(numenator, denominator) == Fraction(newnum, newden):
@@ -35,38 +37,43 @@ def ispandigital(numb, length):
     TODO: add description
     """
     return (len(str(numb)) == length and
-            set([str(x) for x in xrange(1, length+1)]) == set(str(numb)))
+            set([str(x) for x in xrange(1, length + 1)]) == set(str(numb)))
+
 
 def eratosthenes(numb):
     """
     Give list of primes numbers less than numb
     """
-    N = range(numb+1)
-    z = [0]*(numb/2)
-    for i in range(2, int(numb**.5)+1):
-        if N[i]:
-            N[i*i::i] = z[:(numb/i)-i+1]
-    return filter(None, N[2:])
+    nlst = range(numb + 1)
+    z = [0] * (numb / 2)
+    for i in range(2, int(numb ** .5) + 1):
+        if nlst[i]:
+            nlst[i * i::i] = z[:(numb / i) - i + 1]
+    return filter(None, nlst[2:])
+
 
 def isprime(numb):
     if numb <= 0:
         return False
     if numb != 2 and not numb % 2:
         return False
-    for i in xrange(3, int(pow(numb, 0.5))+1, 2):
+    for i in xrange(3, int(pow(numb, 0.5)) + 1, 2):
         if not numb % i:
             return False
     return True
+
 
 def fibonacci(max_value):
     a, b = 1, 2
     while b < max_value:
         yield b
-        a, b = b, a+b
+        a, b = b, a + b
+
 
 def divisors(numb):
     numb = int(numb)
-    return [x for x in xrange(2, numb//2+1) if not numb%x]
+    return [x for x in xrange(2, numb // 2 + 1) if not numb % x]
+
 
 def uniq_divisors(numb):
     """
@@ -74,9 +81,10 @@ def uniq_divisors(numb):
     if numb is prime return list contain one number
     """
     n = int(numb)
-    if n == 1: return [1]
+    if n == 1:
+        return [1]
     i = 2
-    max_i = n**0.5
+    max_i = n ** 0.5
     res = []
 
     while i <= max_i and n != 1:
@@ -85,20 +93,24 @@ def uniq_divisors(numb):
             n /= i
             continue
         i += 1
-    if n != 1: res.append(n)
+    if n != 1:
+        res.append(n)
     return sorted(list(set(res)))
+
 
 def euler_phi(numb):
     """
     Euler's totient function
     """
-    return reduce(lambda x, y: x - x/y, uniq_divisors(numb), numb)
+    return reduce(lambda x, y: x - x / y, uniq_divisors(numb), numb)
+
 
 def isabundant(numb):
     """Checking whether a number is abundant"""
     if numb <= 0:
         return False
     return numb < sum(divisors(numb))
+
 
 def isbinpalindrom(numb):
     """
@@ -107,9 +119,11 @@ def isbinpalindrom(numb):
     b = bin(int(numb))[2:]
     return b == b[::-1]
 
+
 def last_pow_numb(base, power, last):
     """function for last number in power"""
     return reduce(lambda x, y: (x * y) % last, [base] * (power - 1), base)
+
 
 def irrational():
     """
@@ -123,27 +137,31 @@ def irrational():
             yield int(c)
         count += 1
 
-def triangle(n):
+
+def triangle(numb):
     """
     Find n-th tiangle number
     """
-    return (n * (n + 1)) / 2
+    return (numb * (numb + 1)) / 2
 
-def ispentagonal(x):
+
+def ispentagonal(numb):
     """
     Tests for pentagonal numbers
     """
-    n = (math.sqrt(24*x+1) + 1) / 6
+    n = (math.sqrt(24 * numb + 1) + 1) / 6
     return int(n) == n
 
-def ishexagonal(x):
+
+def ishexagonal(numb):
     """
     Tests for hexagonal numbers
     """
-    n = (math.sqrt(8*x+1) + 1) / 4
+    n = (math.sqrt(8 * numb + 1) + 1) / 4
     return int(n) == n
 
-def primedivisors(x):
+
+def primedivisors(numb):
     """
     return dictionary of prime divisors and it's power
 
@@ -155,17 +173,16 @@ def primedivisors(x):
     {2: 2, 5: 2}
     """
     res = {}
-    prime_list = list(eratosthenes(x))
+    prime_list = list(eratosthenes(numb))
     while prime_list:
         pr = prime_list[0]
-        #print pr, x
-        if x % pr:
+        if numb % pr:
             prime_list.remove(pr)
         else:
-            res[pr] = res[pr]+1 if pr in res.keys() else 1
-            if x == pr:
+            res[pr] = res[pr] + 1 if pr in res.keys() else 1
+            if numb == pr:
                 break
-            x = x / pr
+            numb = numb / pr
     return res
 
 if __name__ == '__main__':
