@@ -11,7 +11,7 @@ CONST = 0
 
 from math import log10
 
-def solution(value=CONST):
+def solution():
     """
     Bryukh's solution
     >>> solution()

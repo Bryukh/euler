@@ -15,7 +15,7 @@ def solution(max_value=CONST):
     """
     Bryukh's solution
     """
-    numb_list = range(2, max_value)
+    #numb_list = range(2, max_value)
     circular = []
     numb_list = eratosthenes(max_value)
     for i in numb_list:

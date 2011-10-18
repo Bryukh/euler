@@ -33,7 +33,7 @@ CONST = 0
 
 from itertools import product
 
-def solution(value=CONST):
+def solution():
     """
     Bryukh's solution
     >>> solution()

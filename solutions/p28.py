@@ -25,7 +25,7 @@ def solution(size=CONST):
     return res
 
 def solution2(size=CONST):
-    "Math solution"
+    """Math solution"""
     return sum([10*(i+1)+4*(i**2) for i in xrange(1, size, 2)]) + 1
 
 if __name__ == "__main__":

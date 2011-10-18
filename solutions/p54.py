@@ -73,38 +73,41 @@ WEIGHT = {'2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9,
             'RFlush':5000}
 SUIT = {'C': 1, 'S': 2, 'D': 3, 'H': 4}
 
-class Card():
-    "Object for card"
+class Card(object):
+    """Object for card"""
+
     def __init__(self, sform):
-        "init card from string form"
+        """init card from string form"""
         self.value = WEIGHT[sform[0]]
         self.suit = SUIT[sform[1]]
-    
-    def __repr__(self):
-        return str(self.value)+str(self.suit)
 
-class Hand():
-    "Five card in one hand"
+    def __repr__(self):
+        return str(self.value) + str(self.suit)
+
+
+class Hand(object):
+    """Five card in one hand"""
     cards = set()
+
     def __init__(self, cards):
         self.cards = set(cards)
         if len(self.cards) != 5:
             raise TypeError
-    
+
     def values(self):
-        "Return list of cards value"
+        """Return list of cards value"""
         return [c.value for c in self.cards]
 
     def suits(self):
-        "Return list of cards suit"
+        """Return list of cards suit"""
         return [c.suit for c in self.cards]
 
     def high_card(self):
-        "Return highest card value"
+        """Return highest card value"""
         return max(self.values())
 
     def is_same_value(self, quantity):
-        "Check cards for same value"
+        """Check cards for same value"""
         values = self.values()
         for check in values:
             if values.count(check) == quantity:
@@ -112,62 +115,62 @@ class Hand():
         return 0
 
     def is_pair(self):
-        "Check cards for pair combination"
+        """Check cards for pair combination"""
         res = self.is_same_value(2)
-        return WEIGHT["Pair"]+res if res else 0
+        return WEIGHT["Pair"] + res if res else 0
 
     def is_three(self):
-        "Check cards for three combination"
+        """Check cards for three combination"""
         res = self.is_same_value(3)
-        return WEIGHT["Three"]+res if res else 0
+        return WEIGHT["Three"] + res if res else 0
 
     def is_four(self):
-        "Check cards for four combination"
+        """Check cards for four combination"""
         res = self.is_same_value(4)
-        return WEIGHT["Four"]+res if res else 0
-    
+        return WEIGHT["Four"] + res if res else 0
+
     def is_two_pair(self):
         count_pair = 0
         values = self.values()
         bpair = 0
         for check in values:
             if values.count(check) == 2:
-                count_pair +=1
+                count_pair += 1
                 if check > bpair:
                     lpair = bpair
                     bpair = check
                 else:
                     lpair = check
         if count_pair == 4:
-            return WEIGHT["TPair"]+bpair*11+lpair
+            return WEIGHT["TPair"] + bpair * 11 + lpair
         return 0
 
     def is_flush(self):
-        return (WEIGHT["Flush"] 
+        return (WEIGHT["Flush"]
                 if (self.suits().count(self.suits()[0]) == 5) else 0)
-    
+
     def is_full_house(self):
         pair = self.is_pair()
         three = self.is_three()
         if pair and three:
-            return WEIGHT["FHouse"]+pair+three
+            return WEIGHT["FHouse"] + pair + three
         return False
 
     def is_straight(self):
         svalues = sorted(self.values())
-        if [v-svalues[0] for v in svalues] == range(5):
-            return WEIGHT["Straight"]+svalues[-1]
+        if [v - svalues[0] for v in svalues] == range(5):
+            return WEIGHT["Straight"] + svalues[-1]
         return 0
-    
+
     def is_straight_flush(self):
-        return (WEIGHT["SFlush"]+max(self.values()) 
-                    if (self.is_flush() and self.is_straight()) else 0)
+        return (WEIGHT["SFlush"] + max(self.values())
+                if (self.is_flush() and self.is_straight()) else 0)
 
     def is_royal_flush(self):
         return (WEIGHT["RFlush"]
-                    if (self.is_flush() and self.is_straight() and 
-                        (14 in self.values())) 
-                    else 0)
+                if (self.is_flush() and self.is_straight() and
+                    (14 in self.values()))
+                else 0)
 
 
 def get_value(hand):

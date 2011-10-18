@@ -29,11 +29,10 @@ values of n, starting with n = 0.
 from eulerfunc import isprime
 
 def solution():
-    "Bryukh's solution"
+    """Bryukh's solution"""
     best = (1, 1, 1)
     for a in xrange(-999, 1000):
         for b in xrange(-999, 1000):
-            unt = 0
             i = 0
             while isprime(i**2 + a*i + b):
                 i += 1

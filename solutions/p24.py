@@ -25,7 +25,7 @@ def combination(variants):
         yield []
 
 def solution(maxcount=CONST):
-    "Bryukh's solution"
+    """Bryukh's solution"""
     count = 1
     for x in combination(range(10)):
         count += 1

@@ -6,7 +6,7 @@ import math
 CONST=5
 
 def solution(digit=CONST):
-    "Solution with decimal divison"
+    """Solution with decimal divison"""
     res = 0
     for x in xrange(2, 10**(digit+1)):
         s = sum([math.pow(x // math.pow(10, p) % 10, digit) for p in xrange(digit + 1)])
@@ -15,7 +15,7 @@ def solution(digit=CONST):
     return res
 
 def solution1(digit=CONST):
-    "Solution with string"
+    """Solution with string"""
     res = 0
     for x in range(2, 10**(digit+1)):
         s = sum([int(j)**digit for j in str(x)])

@@ -7,19 +7,19 @@ Find the sum of all the multiples of 3 or 5 below 1000."""
 CONST = 1000
 
 def solution(edge=CONST):
-    "Bryukh's solution"
+    """Bryukh's solution"""
     sum3 = sum((x * 3 for x in xrange((edge - 1) // 3 + 1)))
     sum5 = sum((x * 5 for x in xrange((edge - 1) // 5 + 1)))
     sum15 = sum((x * 15 for x in xrange((edge - 1) // 15 + 1)))
-    return (sum3 + sum5 - sum15)
+    return sum3 + sum5 - sum15
 
 def solution2(edge=CONST):
-    "from https://github.com/nixeagle/euler"
+    """from https://github.com/nixeagle/euler"""
     (y, rang) = (0, range(1, edge))
     for x in rang:
-        if x % 3 == 0:
+        if not x % 3:
             y += x
-        elif x % 5 == 0:
+        elif not x % 5:
             y += x
     return y
 

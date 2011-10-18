@@ -71,6 +71,9 @@ def fibonacci(max_value):
 
 
 def divisors(numb):
+    """
+    find all divisors
+    """
     numb = int(numb)
     return [x for x in xrange(2, numb // 2 + 1) if not numb % x]
 

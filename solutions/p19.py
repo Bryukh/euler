@@ -7,7 +7,7 @@ from datetime import date
 CONST = 1901, 2001
 
 def solution(begin=CONST[0], end=CONST[1]):
-    "Bryukh's solution"
+    """Bryukh's solution"""
     count = 0
     for y in xrange(begin, end):
         for m in xrange(1, 13):

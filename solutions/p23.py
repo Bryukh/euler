@@ -1,4 +1,4 @@
-#TODO: add description and change for perfomance
+#TODO: add description and change for performance
 
 __author__ = 'bryukh'
 

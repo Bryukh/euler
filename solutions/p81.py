@@ -19,7 +19,7 @@ __author__ = 'bryukh'
 
 CONST = 0
 
-def solution(value=CONST):
+def solution():
     """
     Bryukh's solution
     >>> solution()

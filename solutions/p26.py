@@ -22,7 +22,7 @@ recurring cycle in its decimal fraction part.
 CONST = 1000
 
 def solution(maxvalue=CONST):
-    "Bryukh's solution"
+    """Bryukh's solution"""
     maxrep = 0
     best = 1
     for d in xrange(2, maxvalue):

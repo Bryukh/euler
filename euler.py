@@ -16,17 +16,20 @@ class SolutionError(Exception):
     """
     Solution exception
     """
-    def __init__(self, text):
-        self.text = text
+
+    def __init__(self, ertext, *args, **kwargs):
+        Exception.__init__(self, *args, **kwargs)
+        self.text = ertext
 
     def __str__(self):
         return repr(self.text)
 
 
-class Solution():
+class Solution(object):
     """
     Create solution object
     """
+
     def __init__(self, task_number, variant):
         """
         Check existence of solution
@@ -36,11 +39,11 @@ class Solution():
         task_name = "p{0}".format(str(self._task_number))
         try:
             self._task = __import__("solutions." + task_name,
-                                     fromlist=[task_name])
+                                    fromlist=[task_name])
         except ImportError:
             raise SolutionError("Can't find solution file " +
-                                    "for problem {0}".format(self._task_number))
-        #i can import solutions, but it import all tasks
+                                "for problem {0}".format(self._task_number))
+            #i can import solutions, but it import all tasks
         self._solution_name = ("solution" +
                                (str(self._variant) if self._variant else ''))
         if self._solution_name not in dir(self._task):
@@ -58,8 +61,8 @@ class Solution():
         Run timing for solution quantity times
         """
         timer = Timer(self._solution_name + "()",
-                   "from solutions.p{0} import {1}".format(
-                       self._task_number, self._solution_name))
+                      "from solutions.p{0} import {1}".format(
+                          self._task_number, self._solution_name))
         time = timer.timeit(quantity)
         return time
 

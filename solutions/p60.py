@@ -15,7 +15,6 @@ __author__ = 'bryukh'
 CONST = 0
 
 from eulerfunc import eratosthenes, isprime
-from itertools import combinations
 
 def conc(n1, n2):
     """
@@ -26,7 +25,7 @@ def conc(n1, n2):
 def not_conc_prime(n1, n2):
     return not isprime(conc(n1, n2)) or not isprime(conc(n2, n1))
 
-def solution(value=CONST):
+def solution():
     """
     Bryukh's solution
     >>> solution()
