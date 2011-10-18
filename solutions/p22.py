@@ -11,6 +11,9 @@ So, COLIN would obtain a score of 938  53 = 49714.
 What is the total of all the name scores in the file?"""
 
 def solution():
+    """
+    Bryukh's Solution
+    """
     try:
         fname = open("eulerfiles/names22.txt", "r")
     except IOError:

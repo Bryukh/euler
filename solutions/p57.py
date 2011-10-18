@@ -30,6 +30,7 @@ def solution(value=CONST):
     >>> solution()
     
     """
+    temp = Fraction(1, 1)
     count = 0
     for x in xrange(value):
         denominator = 2

@@ -133,6 +133,7 @@ class Hand(object):
         count_pair = 0
         values = self.values()
         bpair = 0
+        lpair = 0
         for check in values:
             if values.count(check) == 2:
                 count_pair += 1
