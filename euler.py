@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 #-*- encoding: utf8 -*-
-#pylint: disable=W0511
-"""
+
+__author__ = "Valentin Bryukhanov"
 
 """
 #TODO: need docstring
+"""
+
 import os
 import re
 
@@ -16,7 +18,6 @@ class SolutionError(Exception):
     """
     Solution exception
     """
-
     def __init__(self, ertext, *args, **kwargs):
         Exception.__init__(self, *args, **kwargs)
         self.text = ertext
