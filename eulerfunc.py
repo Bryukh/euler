@@ -188,6 +188,84 @@ def primedivisors(numb):
             numb = numb / pr
     return res
 
+def triangle_gen(min_numb, max_numb):
+    """
+    generator for triangle numbers
+    """
+    n = 1
+    while True:
+        res = n * (n + 1) / 2
+        if res > max_numb:
+            raise StopIteration
+        if res >= min_numb:
+            yield res
+        n += 1
+
+def square_gen(min_numb, max_numb):
+    """
+    generator for square numbers
+    """
+    n = 1
+    while True:
+        res = n ** 2
+        if res > max_numb:
+            raise StopIteration
+        if res >= min_numb:
+            yield res
+        n += 1
+
+def pentagonal_gen(min_numb, max_numb):
+    """
+    generator for pentagonal numbers
+    """
+    n = 1
+    while True:
+        res = n * (3 * n - 1) / 2
+        if res > max_numb:
+            raise StopIteration
+        if res >= min_numb:
+            yield res
+        n += 1
+
+def hexagonal_gen(min_numb, max_numb):
+    """
+    generator for hexagonal numbers
+    """
+    n = 1
+    while True:
+        res = n * (2 * n - 1)
+        if res > max_numb:
+            raise StopIteration
+        if res >= min_numb:
+            yield res
+        n += 1
+
+def heptagonal_gen(min_numb, max_numb):
+    """
+    generator for heptagonal numbers
+    """
+    n = 1
+    while True:
+        res = n * (5 * n - 3) / 2
+        if res > max_numb:
+            raise StopIteration
+        if res >= min_numb:
+            yield res
+        n += 1
+
+def octagonal_gen(min_numb, max_numb):
+    """
+    generator for octagonal numbers
+    """
+    n = 1
+    while True:
+        res = n * (3 * n - 2)
+        if res > max_numb:
+            raise StopIteration
+        if res >= min_numb:
+            yield res
+        n += 1
+
 if __name__ == '__main__':
     import doctest
     doctest.testmod(verbose=True)
