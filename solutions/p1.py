@@ -23,6 +23,11 @@ def solution2(edge=CONST):
             y += x
     return y
 
+import unittest
+class Test(unittest.TestCase):
+    def test_solutions(self):
+        self.assertEqual(solution(1000), 233168)
+        self.assertEqual(solution2(1000), 233168)
+
 if __name__ == "__main__":
-    print solution()
-    print solution2()
+    unittest.main()

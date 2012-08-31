@@ -9,6 +9,7 @@ __author__ = "Valentin Bryukhanov"
 
 import os
 import re
+import unittest
 
 from timeit import Timer
 from optparse import OptionParser
@@ -67,6 +68,13 @@ class Solution(object):
         time = timer.timeit(quantity)
         return time
 
+    def run_test(self):
+        """
+        Run unittests in solution file
+        """
+        suite = unittest.TestLoader().loadTestsFromModule(self._task)
+        unittest.TextTestRunner(verbosity=2).run(suite)
+
     def run_show_vars(self):
         """
         Show exist variants and docstring for it
@@ -95,6 +103,7 @@ def main():
     """
     Main function
     """
+
     parser = OptionParser()
     parser.add_option("-t", "--timing", action="store_true",
                       dest="timing",
@@ -113,6 +122,9 @@ def main():
     parser.add_option("-d", "--show-description", dest="description",
                       action="store_true",
                       help="Show task description")
+    parser.add_option("-u", "--test", dest="test",
+                      action="store_true",
+                      help="Run tests")
     options, task_number = parser.parse_args()
 
     if options.show_all:
@@ -124,6 +136,8 @@ def main():
     solution = Solution(task_number[0], options.var)
     if options.description:
         print solution.run_show_task()
+    if options.test:
+        solution.run_test()
     print "Variant ", "default" if not options.var else options.var
     print "Answer is", solution.run_solution()
     if options.timing:
